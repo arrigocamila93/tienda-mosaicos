@@ -1,14 +1,19 @@
 import logo from './logo.svg';
 import './App.css';
+import React from 'react';
+import { BrowserRouter } from 'react-router-dom'
+import Navbar from "./components/NavBar.js"
 
 function App() {
   return (
     <div className="App">
+      <BrowserRouter>
       <header className="App-header">
         <img src={logo} className="App-logo" alt="logo" />
         <p>
           Edit <code>src/App.js</code> and save to reload.
         </p>
+        <Navbar />
         <a
           className="App-link"
           href="https://reactjs.org"
@@ -18,6 +23,7 @@ function App() {
           Learn React
         </a>
       </header>
+      </BrowserRouter>
     </div>
   );
 }
