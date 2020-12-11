@@ -1,19 +1,22 @@
-
 import './App.css';
 import React from 'react';
-import { BrowserRouter } from 'react-router-dom'
-import Navbar from "./components/NavBar.js"
+import Navbar from "./components/NavBar/NavBar.js"
+import ItemListContainer from "./containers/ItemListCointainer/ItemListContainer";
 
 function App() {
   return (
     <div className="App">
-      <BrowserRouter>
+
       <header className="App-header">
-        
+
         <Navbar />
-        
+
       </header>
-      </BrowserRouter>
+
+      <section className="container home">
+        <ItemListContainer greeting={"Bienvenidos!"} />
+      </section>
+
     </div>
   );
 }
