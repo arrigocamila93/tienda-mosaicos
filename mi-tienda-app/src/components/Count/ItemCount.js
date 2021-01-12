@@ -1,16 +1,11 @@
 import React from 'react';
 
-export default function ItemCount({count, setCount}) {
+export default function ItemCount({count, add, less }) {
     return (
         <>
-        <button
-            onClick={ () => setCount(count + 1)}
-        >+</button>
-        <p>{count}
-        </p>
-        <button
-            onClick={ () => setCount(count - 1)}
-        >-</button>
+        <button onClick={() => add()}>+</button>
+      <p>{count}</p>
+      <button onClick={() => less()}>-</button>
         </>
     );
 };

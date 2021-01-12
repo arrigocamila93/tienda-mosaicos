@@ -7,8 +7,28 @@ import ItemCount from "./components/Count/ItemCount";
 
 
 
-function App() {
+export default function App() {
   const [count, setCount] = useState(0);
+  const qty = 7;
+
+  const add = () => {
+    if (count < qty) {
+      setCount(count + 1);
+    }
+    if (count === qty) {
+      alert("Sin más stock, disculpe");
+    }
+  };
+
+  const less = () => {
+    if (count === 0) {
+      alert("0 es el mínimo");
+      return;
+    }
+
+    setCount(count - 1);
+  };
+
   return (
     <div className="App">
 
@@ -23,17 +43,14 @@ function App() {
       </section>
 
       <>
-      <ProductCard titulo="Producto 1" precio="$450" />
-      <ProductCard titulo="Producto 2" precio="$450" />
-      <ProductCard titulo="Producto 3" precio="$450" />
-      <ProductCard titulo="Producto 4" precio="$450" />
+        <ProductCard titulo="Producto 1" precio="$450" />
+        <ProductCard titulo="Producto 2" precio="$450" />
+        <ProductCard titulo="Producto 3" precio="$450" />
+        <ProductCard titulo="Producto 4" precio="$450" />
       </>
 
       <>
-      <ItemCount 
-        count= {count}
-        setCount={setCount}
-      />
+        <ItemCount count={count} add={add} less={less} /> 
       </>
 
 
@@ -42,4 +59,3 @@ function App() {
   );
 }
 
-export default App;
