@@ -1,61 +1,45 @@
-import './App.css';
-import React, { useState } from 'react';
-import Navbar from "./components/NavBar/NavBar.js"
-import ItemListContainer from "./containers/ItemListCointainer/ItemListContainer";
-import ProductCard from "./components/ProductCard/ProductCard";
-import ItemCount from "./components/Count/ItemCount";
+import React  from 'react';
+import NavBar from "./componentes/navbar/Navbar";
+import Slider from './componentes/slider/Slider';
+import './App.css'
+import Footer from './componentes/footer/Footer'
+import Olograma from './componentes/ologramas/Ologramas'
+import "./App.css"
+import ItemListContainer from './containers/Itemlistcontainer/ItemsListContainer';
+import { BrowserRouter, Switch, Route } from 'react-router-dom'
+import ItemDetailContainer from './containers/itemDetailContainer/ItemDetailContainer';
+import { CartProvider } from './context/CartContext';
+import CartContainer from './containers/CartContainer/CartContainer';
 
 
 
-export default function App() {
-  const [count, setCount] = useState(0);
-  const qty = 7;
-
-  const add = () => {
-    if (count < qty) {
-      setCount(count + 1);
-    }
-    if (count === qty) {
-      alert("Sin más stock, disculpe");
-    }
-  };
-
-  const less = () => {
-    if (count === 0) {
-      alert("0 es el mínimo");
-      return;
-    }
-
-    setCount(count - 1);
-  };
+ const App = ()=> {
 
   return (
-    <div className="App">
-
-      <header className="App-header">
-
-        <Navbar />
-
-      </header>
-
-      <section className="container home">
-        <ItemListContainer greeting={"Bienvenidos!"} />
-      </section>
-
-      <>
-        <ProductCard titulo="Producto 1" precio="$450" />
-        <ProductCard titulo="Producto 2" precio="$450" />
-        <ProductCard titulo="Producto 3" precio="$450" />
-        <ProductCard titulo="Producto 4" precio="$450" />
-      </>
-
-      <>
-        <ItemCount count={count} add={add} less={less} /> 
-      </>
-
-
-
-    </div>
-  );
-}
-
+    <CartProvider>
+      <BrowserRouter>
+          <NavBar />
+          <Switch>
+            <Route exact path={`/`}>
+              <Slider />
+              <Olograma />
+              {/* <div className="container text-center ">
+                <button className="centrar" onClick={cambiarTitulo}>Cambiar Titulo</button>
+              </div> */}
+              <ItemListContainer />
+            </Route> 
+            <Route exact path={`/detail/:id`}>
+              <ItemDetailContainer/>
+            </Route>
+            <Route exact path={`/cart`}>
+              <CartContainer/>
+            </Route>
+          </Switch>
+          <Footer 
+          titulo="Viví creando"
+          subtitulo="Dale color a tu mundo"/>
+      </BrowserRouter>
+    </CartProvider>
+  )
+ }
+export default App;
